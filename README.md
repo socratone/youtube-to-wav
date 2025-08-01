@@ -37,7 +37,7 @@ npm run extract <YouTube_URL>
 
 ```bash
 # YouTube 비디오에서 오디오 추출
-npm run extract https://www.youtube.com/watch?v=dQw4w9WgXcQ
+npm run extract "https://youtu.be/ez9y6qqkR98?si=tAMdTWMCLHAMLs1F"
 ```
 
 ## 작동 방식
