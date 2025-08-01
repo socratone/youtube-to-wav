@@ -38,14 +38,7 @@ npm run extract <YouTube_URL>
 ```bash
 # YouTube 비디오에서 오디오 추출
 npm run extract https://www.youtube.com/watch?v=dQw4w9WgXcQ
-
-# 임시 파일 유지 옵션과 함께 실행
-npm run extract https://www.youtube.com/watch?v=dQw4w9WgXcQ --keep-files
 ```
-
-### 옵션
-
-- `--keep-files`: 추출 과정에서 생성된 임시 파일들을 삭제하지 않고 유지합니다.
 
 ## 작동 방식
 

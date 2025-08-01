@@ -97,13 +97,12 @@ def delete_file(file_paths: list) -> None:
             print(f"파일 삭제 실패 {file_path}: {str(e)}")
 
 
-def extract_audio_from_youtube_url(url: str, keep_files: bool = False) -> str:
+def extract_audio_from_youtube_url(url: str) -> str:
     """
     YouTube URL에서 오디오를 추출하는 메인 함수
 
     Args:
         url: YouTube URL
-        keep_files: True면 다운로드된 파일들을 유지, False면 삭제
 
     Returns:
         추출된 오디오 파일 경로
@@ -131,17 +130,16 @@ def extract_audio_from_youtube_url(url: str, keep_files: bool = False) -> str:
         extract_audio_from_video(video_file_path, audio_file_path)
         print(f"오디오 추출 완료: {audio_file_path}")
 
-        # 4. 파일 정리
-        if not keep_files:
-            delete_file([video_file_path])
+        # 4. 임시 파일 정리
+        delete_file([video_file_path])
 
         return audio_file_path
 
     except Exception as e:
         # 오류 발생 시 생성된 파일들 정리
-        if not keep_files and video_file_path and os.path.exists(video_file_path):
+        if video_file_path and os.path.exists(video_file_path):
             delete_file([video_file_path])
-        if not keep_files and audio_file_path and os.path.exists(audio_file_path):
+        if audio_file_path and os.path.exists(audio_file_path):
             delete_file([audio_file_path])
 
         raise Exception(f"오디오 추출 실패: {str(e)}")
@@ -150,17 +148,16 @@ def extract_audio_from_youtube_url(url: str, keep_files: bool = False) -> str:
 def main():
     """메인 실행 함수"""
     if len(sys.argv) < 2:
-        print("사용법: python audio_extractor.py <YouTube_URL> [--keep-files]")
+        print("사용법: python audio_extractor.py <YouTube_URL>")
         print(
             "예시: python audio_extractor.py https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         )
         sys.exit(1)
 
     url = sys.argv[1]
-    keep_files = "--keep-files" in sys.argv
 
     try:
-        audio_path = extract_audio_from_youtube_url(url, keep_files)
+        audio_path = extract_audio_from_youtube_url(url)
         print(f"\n✅ 성공! 오디오 파일이 생성되었습니다: {audio_path}")
 
     except Exception as e:
