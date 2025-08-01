@@ -5,7 +5,6 @@ YouTube URL에서 오디오를 추출하는 독립적인 프로그램
 
 import os
 import sys
-from typing import Optional
 
 
 def download_youtube_video(url: str) -> str:
